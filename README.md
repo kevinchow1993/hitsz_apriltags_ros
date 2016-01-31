@@ -2,6 +2,10 @@
 ##--------------Usage--------------------
 
    Just launch the .launch file
+   
+```
+   $ roslaunch uvc_apriltags_test uvc_apriltags.launch
+```
  
    To change the camera device and config, just edit the launch file and yaml file.
 
