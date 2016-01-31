@@ -64,6 +64,6 @@ Before compling,you shoule add(or install) the dependences as follow:
    
 **4.ethz_apriltag2(This is a version of Apriltags_ros edit by ETHZ_ASL team, from kalib)**
 
-  **Notice** This test is using this version. To chuange normal Apriltags_ros, edit the depends of CMakeLists.txt and package.xml before compiling.
+  **Notice:**    This test is using this version. To change normal Apriltags_ros, edit the depends of CMakeLists.txt and package.xml before compiling.
 
 
