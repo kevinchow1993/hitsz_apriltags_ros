@@ -14,19 +14,19 @@
 ##--------------files --------------------
 Include three documents:
 
-(1)apriltags_ros
+**(1)apriltags_ros**
 
-   In this document exists a base apriltag lib and two version of apriltags_ros,now is using ethz_apriltag2
+   In this document exists a base apriltag lib and two version of apriltags_ros,now is using **ethz_apriltag2**
 
    To change the blackborder(default is 1),edit 
 
    Exmple_of_apriltasgs_from_UVC/apriltags_ros/ethz_apriltag2/include/AprilTags/TagDetector.h
 
-(2)camera_umd
+**(2)camera_umd**
 
    This is an old_uvc camera driver of ros_package
     
-(3)uvc_tast_main
+**(3)uvc_tast_main**
 
    This contain a launch file and some init parameter to run the test. 
     
@@ -34,19 +34,19 @@ Include three documents:
 
 Before compling,you shoule add(or install) the dependences as follow:
 
-1.A old ros package:   uvc_camera
+**1.A old ros package:   uvc_camera**
 
    see wiki:http://wiki.ros.org/uvc_camera
 
    source git:   https://github.com/ktossell/camera_umd
 
-2.Opencv and image_relate dependengce:
+**2.Opencv and image_relate dependengce:**
 
    image_common
    
    image_transport
    
-3.Apriltags_ros (this package include apriltags C++ libraries,that is the leading-role of our test!)
+**3.Apriltags_ros (this package include apriltags C++ libraries,that is the leading-role of our test!)**
 
    http://wiki.ros.org/apriltags_ros----The source code (apriltags C++ libraries) 
 
@@ -62,6 +62,7 @@ Before compling,you shoule add(or install) the dependences as follow:
 
    ----Another reference wiki is tekkotsu, see http://wiki.tekkotsu.org/index.php/AprilTags
    
-4.ethz_apriltag2(This is a version of Apriltags_ros edit by ETHZ_ASL team, from kalib)
+**4.ethz_apriltag2(This is a version of Apriltags_ros edit by ETHZ_ASL team, from kalib)**
+  **Notice** This test is using this version. To chuange normal Apriltags_ros, edit the depends of CMakeLists.txt and package.xml before compiling.
 
 
