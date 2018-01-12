@@ -7,7 +7,10 @@ void imageCallback(const sensor_msgs::ImageConstPtr& msg)
 {
   try
   {
-    cv::imshow("webcam_apriltags_detect_result", cv_bridge::toCvShare(msg, "bgr8")->image);
+  	cv::Mat image=cv_bridge::toCvShare(msg, "bgr8")->image.clone();
+
+
+    cv::imshow("webcam_apriltags_detect_result", image);
   }
   catch (cv_bridge::Exception& e)
   {

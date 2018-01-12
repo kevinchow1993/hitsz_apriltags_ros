@@ -24,10 +24,10 @@ Camera::Camera(ros::NodeHandle _comm_nh, ros::NodeHandle _param_nh) :
       /* default config values */
       width = 640;
       height = 480;
-      fps = 10;
+      fps = 60;
       skip_frames = 0;
       frames_to_skip = 0;
-      device = "/dev/video0";
+      device = "/dev/video1";
       frame = "camera";
       rotate = false;
       format = "rgb";
@@ -273,7 +273,6 @@ Camera::Camera(ros::NodeHandle _comm_nh, ros::NodeHandle _param_nh) :
              image->data.resize(bytes_used);
 
              memcpy(&image->data[0], img_frame, bytes_used);
-
              pubjpeg.publish(image);
 
              sendInfoJpeg(capture_time);

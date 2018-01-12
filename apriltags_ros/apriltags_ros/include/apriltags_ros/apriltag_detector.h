@@ -6,6 +6,7 @@
 
 #include <AprilTags/TagDetector.h>
 #include <tf/transform_broadcaster.h>
+#include <camera_control/CameraPos.h>//flx add
 
 namespace apriltags_ros{
 
@@ -39,6 +40,7 @@ class AprilTagDetector{
   image_transport::Publisher image_pub_;
   ros::Publisher detections_pub_;
   ros::Publisher pose_pub_;
+  ros::Publisher camera_servo_pose_pub_;//flx add
   tf::TransformBroadcaster tf_pub_;
   boost::shared_ptr<AprilTags::TagDetector> tag_detector_;
 };

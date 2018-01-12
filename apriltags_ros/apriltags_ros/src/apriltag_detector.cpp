@@ -35,10 +35,11 @@ AprilTagDetector::AprilTagDetector(ros::NodeHandle& nh, ros::NodeHandle& pnh): i
 
   AprilTags::TagCodes tag_codes = AprilTags::tagCodes36h11;
   tag_detector_= boost::shared_ptr<AprilTags::TagDetector>(new AprilTags::TagDetector(tag_codes));
-  image_sub_ = it_.subscribeCamera("image_rect", 1, &AprilTagDetector::imageCb, this);
+  image_sub_ = it_.subscribeCamera("/f_camera/image_rect", 1, &AprilTagDetector::imageCb, this);
   image_pub_ = it_.advertise("tag_detections_image", 1);
   detections_pub_ = nh.advertise<AprilTagDetectionArray>("tag_detections", 1);
   pose_pub_ = nh.advertise<geometry_msgs::PoseArray>("tag_detections_pose", 1);
+  camera_servo_pose_pub_=nh.advertise<camera_control::CameraPos>("/camera_servo_pose",1);
 }
 AprilTagDetector::~AprilTagDetector(){
   image_sub_.shutdown();
@@ -90,6 +91,9 @@ void AprilTagDetector::imageCb(const sensor_msgs::ImageConstPtr& msg,const senso
 
 	//  ROS_INFO("%lf",tag_size);
 	  
+  
+
+
     detection.draw(cv_ptr->image);
     Eigen::Matrix4d transform = detection.getRelativeTransform(tag_size, fx, fy, px, py);
     Eigen::Matrix3d rot = transform.block(0,0,3,3);
@@ -115,6 +119,16 @@ void AprilTagDetector::imageCb(const sensor_msgs::ImageConstPtr& msg,const senso
     tag_detection.size = tag_size;
     tag_detection_array.detections.push_back(tag_detection);
     tag_pose_array.poses.push_back(tag_pose.pose);
+
+      camera_control::CameraPos CameraPos_msg;
+    CameraPos_msg.cx=detection.cxy.first;
+    CameraPos_msg.cy=detection.cxy.second;
+    CameraPos_msg.id=detection.id;
+    CameraPos_msg.size = tag_size;
+    CameraPos_msg.pose = tag_pose;
+    camera_servo_pose_pub_.publish(CameraPos_msg);
+    //printf("---%f %f---\n",detection.cxy.first,detection.cxy.second);
+
 
     tf::Stamped<tf::Transform> tag_transform;
     tf::poseStampedMsgToTF(tag_pose, tag_transform);
