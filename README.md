@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ##-------A example or a test  using webcam to detect  apriltags------------
 ##--------------Usage--------------------
 
@@ -67,3 +68,6 @@ Before compling,you shoule add(or install) the dependences as follow:
   **Notice:**    This test is using this version. To change normal Apriltags_ros, edit the depends of CMakeLists.txt and package.xml before compiling.
 
 
+=======
+# hitsz_apriltags_ros
+>>>>>>> cf89857b9f7ba8cacdb6eed4047d3509ada20425
